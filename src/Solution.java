@@ -1,16 +1,12 @@
-class Solution {
-    public static int uniquePaths(int m, int n) {
-        if (m == 0 || n == 0) {
-            return 0;
-        }
+import java.util.List;
 
-        int[] buffer = new int[m];
-        buffer[0] = 1;
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j < m; j++) {
-                buffer[j] += buffer[j - 1];
+class Solution {
+    public static int[] sumLists(List<List<Integer>> lists) {
+        int[] ans = new int[lists.size()];
+
+        for (int i=0; i<lists.size(); i++) {
+            ans[i] = lists.get(i).stream().mapToInt(Integer::intValue).sum();
             }
-        }
-        return buffer[m - 1];
+        return ans;
     }
 }

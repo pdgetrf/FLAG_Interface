@@ -1,36 +1,50 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SolutionTest {
     @Test
-    public void testUniquePaths() {
+    public void testSumLists() {
 
         List<TestCase> testCases = getTestCases();
 
         for (int i = 0; i < testCases.size(); i++) {
             System.out.printf("case %d\n", i);
             TestCase testCase = testCases.get(i);
-            assertEquals(testCase.expect, Solution.uniquePaths(testCase.m, testCase.n));
+            assertTrue(Arrays.equals(testCase.expect, Solution.sumLists(testCase.lists)));
         }
     }
 
     private List<TestCase> getTestCases() {
+        int[][] values = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8, 9},
+        };
+
+        List<List<Integer>> lists = new ArrayList<>();
+
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int val : values[0]) {
+            linkedList.add(val);
+        }
+        lists.add(linkedList);
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int val : values[1]) {
+            arrayList.add(val);
+        }
+        lists.add(arrayList);
+
+        int[] expects = new int[]{10, 35};
+
         List<TestCase> testCases = new ArrayList<>();
-        testCases.add(new TestCase(0, 0, 0));
-        testCases.add(new TestCase(1, 1, 1));
-        testCases.add(new TestCase(1, 2, 1));
-        testCases.add(new TestCase(2, 1, 1));
-        testCases.add(new TestCase(2, 2, 2));
-        testCases.add(new TestCase(2, 3, 3));
-        testCases.add(new TestCase(3, 2, 3));
-        testCases.add(new TestCase(5, 3, 15));
-        testCases.add(new TestCase(5, 3, 15));
-        testCases.add(new TestCase(7, 3, 28));
+        testCases.add(new TestCase(lists, expects));
+
         return testCases;
     }
 }

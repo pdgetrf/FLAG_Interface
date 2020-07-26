@@ -1,11 +1,10 @@
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 
 public class SolutionTest {
     @Test
@@ -16,7 +15,7 @@ public class SolutionTest {
         for (int i = 0; i < testCases.size(); i++) {
             System.out.printf("case %d\n", i);
             TestCase testCase = testCases.get(i);
-            assertTrue(Arrays.equals(testCase.expect, Solution.sumLists(testCase.lists)));
+            assertArrayEquals(testCase.expect, Solution.sumLists(testCase.lists));
         }
     }
 
@@ -28,17 +27,19 @@ public class SolutionTest {
 
         List<List<Integer>> lists = new ArrayList<>();
 
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        for (int val : values[0]) {
-            linkedList.add(val);
-        }
-        lists.add(linkedList);
-
+        // initialize a arraylist
         ArrayList<Integer> arrayList = new ArrayList<>();
-        for (int val : values[1]) {
+        for (int val : values[0]) {
             arrayList.add(val);
         }
         lists.add(arrayList);
+
+        // initialize an linkedlist
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int val : values[1]) {
+            linkedList.add(val);
+        }
+        lists.add(linkedList);
 
         int[] expects = new int[]{10, 35};
 

@@ -22,7 +22,7 @@ public class SolutionTest {
     private List<TestCase> getTestCases() {
         int[][] values = {
                 {1, 2, 3, 4},
-                {5, 6, 7, 8, 9},
+                {5, 6, 7, 8, 9, -1},
         };
 
         List<List<Integer>> lists = new ArrayList<>();
@@ -41,7 +41,7 @@ public class SolutionTest {
         }
         lists.add(linkedList);
 
-        int[] expects = new int[]{10, 35};
+        int[] expects = new int[]{10, 34};
 
         List<TestCase> testCases = new ArrayList<>();
         testCases.add(new TestCase(lists, expects));
